@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Values.postSync.namespace }}
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   workflowTemplateRef:
     name: {{ .Values.postSync.workflowTemplate }}
