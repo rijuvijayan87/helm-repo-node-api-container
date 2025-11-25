@@ -1,0 +1,14 @@
+{{- if .Values.postSync.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: {{ include "node-api.fullname" . }}-test-{{ now | unixEpoch }}
+  namespace: {{ .Values.postSync.namespace }}
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  workflowTemplateRef:
+    name: {{ .Values.postSync.workflowTemplate }}
+  serviceAccountName: {{ .Values.postSync.serviceAccount }}
+{{- end }}

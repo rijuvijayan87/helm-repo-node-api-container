@@ -82,3 +82,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+postSync:
+  enabled: true
+  namespace: argo-workflows
+  workflowTemplate: argo-workflows-node-api-test
+  serviceAccount: argo-workflow
